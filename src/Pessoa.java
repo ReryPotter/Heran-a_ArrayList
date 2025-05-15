@@ -35,4 +35,10 @@ public abstract class Pessoa {
         this.nome = nome;
         this.email = email;
     }
+
+    public void lista() {
+        System.out.println("ID: " + id);
+        System.out.println("Nome: " + nome);
+        System.out.println("Email: " + email);
+    }
 }

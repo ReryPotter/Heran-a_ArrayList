@@ -29,4 +29,10 @@ public abstract class Jogador extends Pessoa {
         this.idade = idade;
     }
 
+    public void lista() {
+        super.lista();
+        System.out.println("Esporte: " + esporte);
+        System.out.println("Idade: " + idade);
+    }
+
 }

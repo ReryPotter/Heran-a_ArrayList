@@ -29,4 +29,11 @@ public final class Fisico extends Jogador {
         this.categoria = categoria;
     }
 
+    public void lista() {
+        super.lista();
+        System.out.println("Modalidade: " + modalidade);
+        System.out.println("Categoria: " + categoria + "");
+        System.out.println("---------------------------------");
+    }
+
 }
