@@ -29,4 +29,10 @@ public final class Virtual extends Jogador {
         this.posicaoRanking = posicaoRanking;
     }
 
+    public void lista() {
+        super.lista();
+        System.out.println("Tipo de jogo: " + TipoJogo);
+        System.out.println("Posição no ranking: " + posicaoRanking);
+    }
+
 }

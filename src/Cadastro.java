@@ -153,12 +153,66 @@ public class Cadastro {
                     case 22:
                         // Mostrar os 3 melhores jogadores do ranking
                         System.out.println("\nOs 3 melhores jogadores do ranking são:");
-                        for (Virtual jogador : listaJogadoresVirtuais) {
-                            if (jogador.getPosicaoRanking() <= 3) {
-                                System.out.println("Nome: " + jogador.getNome());
-                                System.out.println("Posição no Ranking: " + jogador.getPosicaoRanking());
-                            }
+
+                        // 1. Criar uma cópia da lista original para não alterar a ordem verdadeira
+                        ArrayList<Virtual> copiaOrdenada = new ArrayList<>(listaJogadoresVirtuais);
+                        /*
+                         * ArrayList<Virtual>        → Define que a nova lista será de objetos do tipo Virtual (remete-se a classe).
+                         * copiaOrdenada             → Nome da nova lista (pode ser qualquer identificador).
+                         * = new ArrayList<>()       → Cria uma nova lista.
+                         * (listaJogadoresVirtuais)  → Copia os elementos da lista original para a nova lista.
+                         *                           Isso evita modificar a ordem da lista original.
+                        */
+                        
+                        // 2. Ordenar a lista de cópia pela posição no ranking (do menor para o maior)
+                        copiaOrdenada.sort(Comparator.comparingInt(Virtual::getPosicaoRanking));
+                        /*
+                         * copiaOrdenada                    → Nome da lista.
+                         * .sort(...)                       → Método que ordena a lista.
+                         * Comparator.comparingInt(...)     → Cria um comparador com base em um valor inteiro.
+                         * Virtual::getPosicaoRanking       → Usa o método getPosicaoRanking da classe Virtual como critério
+                         *                                  de ordenação (menor ranking = melhor jogador).
+                         *                              Obs: O operador :: é um atalho para dizer "use esse método como referência".
+                        */
+
+                        // 3. Determinar o número de jogadores a exibir (no máximo 3 ou o total da lista, se menor)
+                        int limite = Math.min(3, copiaOrdenada.size());
+                        /*
+                         * Math.min(3, copiaOrdenada.size())    → Retorna o menor valor entre 3 e o tamanho da lista.
+                         *                                      Isso garante que não tentaremos acessar mais jogadores do que existem,
+                         *                                      evitando erros de índice fora do limite.
+                        */
+
+                        for (int i = 0; i < limite; i++) {
+                            Virtual jogador = copiaOrdenada.get(i);
+                            System.out.println("\nNome: " + jogador.getNome());
+                            System.out.println("Posição no Ranking: " + jogador.getPosicaoRanking());
                         }
+                        /*
+                         * Percorre os primeiros 'limite' jogadores da lista ordenada.
+                         * Imprime o nome e a posição no ranking de cada um.
+                        */
+
+
+                    //     // Mostrar os 3 melhores jogadores do ranking
+                    //     System.out.println("\nOs 3 melhores jogadores do ranking são:");
+                    //     for (Virtual jogador : listaJogadoresVirtuais) {
+                    //         if (jogador.getPosicaoRanking() == 1) {
+                    //             System.out.println("Nome: " + jogador.getNome());
+                    //             System.out.println("Posição no Ranking: " + jogador.getPosicaoRanking());
+                    //         }
+                    //         if (jogador.getPosicaoRanking() == 2) {
+                    //             System.out.println("Nome: " + jogador.getNome());
+                    //             System.out.println("Posição no Ranking: " + jogador.getPosicaoRanking());
+                    //         }
+                    //         if (jogador.getPosicaoRanking() == 3) {
+                    //             System.out.println("Nome: " + jogador.getNome());
+                    //             System.out.println("Posição no Ranking: " + jogador.getPosicaoRanking());
+                    //         }
+                    //     }
+                    // break;
+
+
                         
                     //     // Mostrar os 3 melhores jogadores do ranking
                     //     System.out.println("\nOs 3 melhores jogadores do ranking são:");
@@ -174,8 +228,20 @@ public class Cadastro {
                     //         System.out.println("Posição no Ranking: " + jogador.getPosicaoRanking());
                     //     }
                     // break;
-                    
-                    case 100:
+                    break;
+
+                    case 23 :
+                        System.out.println("Qual o jogador você quer pesquisar?");
+                        String buscaJogador = "";
+                        buscaJogador = ler.nextLine();
+                        for (Virtual virtual : listaJogadoresVirtuais) {
+                            if (virtual.getNome.equalsIgnoreCase(buscaJogador)) {
+                                    virtual.lista();
+                            }
+                        }
+                    break;
+
+                    case 100 :
                         System.out.println("Saindo do sistema...");
                         break;
                     
