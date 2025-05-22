@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Scanner;
 
 public class Cadastro {
     public static void main(String[] args) throws Exception {
@@ -6,7 +8,6 @@ public class Cadastro {
         Scanner ler = new Scanner(System.in);
         int opcao = 0;
 
-        Virtual objJogadorVirtual = new Virtual();
         Fisico objJogadorFisico = new Fisico();
         Convidado objJuizConvidado = new Convidado();
         Contratado objJuizContratado = new Contratado();
@@ -15,6 +16,7 @@ public class Cadastro {
         ArrayList<Pessoa> lista = new ArrayList<>();// Lista instanciada em Pessoa (mais genérica)
 
         do {
+
             try {
                 
                 System.out.println("\n\n----------------- MENU -----------------");
@@ -39,26 +41,7 @@ public class Cadastro {
                     case 1:// Cadastrar Jogador Virtual
                         System.out.println("\nCadastrar Jogador Virtual");
                         while (true) {
-                            objJogadorVirtual = new Virtual();// Criar nova instância a cada iteração
-
-                            while (true) {
-                                try {
-                                    System.out.print("Digite o ID: ");
-                                    int id = Integer.parseInt(ler.nextLine());
-                                    if (id > 0 && id <= 1000) {
-                                        objJogadorVirtual.setId(id);
-                                        break;
-                                    } else {
-                                        System.out.println("ID inválido! O ID deve ser entre 0 e 1000.");
-                                    }
-                                } catch (Exception e) {
-                                    System.out.println("Valor inválido! O ID deve ser um número inteiro.");
-                                }
-                            }
-                            System.out.print("Digite o Nome: ");
-                            objJogadorVirtual.setNome(ler.nextLine());
-                            System.out.print("Digite o Email: ");
-                            objJogadorVirtual.setEmail(ler.nextLine());
+                            Virtual objJogadorVirtual = new Virtual(); // Criar nova instância a cada iteração
                             System.out.print("Digite o Esporte: ");
                             objJogadorVirtual.setEsporte(ler.nextLine());
                             System.out.print("Digite a Idade: ");
@@ -143,7 +126,9 @@ public class Cadastro {
                         for (Pessoa jogador : lista) {
                             if (jogador instanceof Jogador) {
                                 Jogador jogadorVolei = (Jogador) jogador;
-                                if (jogadorVolei.getEsporte().equalsIgnoreCase("Volei") || jogadorVolei.getEsporte().equalsIgnoreCase("volei")) {
+                                if (jogadorVolei.getEsporte().equalsIgnoreCase("Volei") ||
+                                    jogadorVolei.getEsporte().equalsIgnoreCase("vôlei"))
+                                    {
                                     System.out.println("Nome: " + jogadorVolei.getNome());
                                 }
                             }
@@ -232,25 +217,32 @@ public class Cadastro {
 
                     case 23 :
                         System.out.println("Qual o jogador você quer pesquisar?");
-                        String buscaJogador = "";
-                        buscaJogador = ler.nextLine();
+                        String buscaJogador = ler.nextLine();
                         for (Virtual virtual : listaJogadoresVirtuais) {
-                            if (virtual.getNome.equalsIgnoreCase(buscaJogador)) {
-                                    virtual.lista();
+                            if (virtual.getNome().equalsIgnoreCase(buscaJogador)) {
+                                virtual.lista();
+                            }
+                        }
+                        for (Pessoa jogador : lista) {
+                            if (jogador instanceof Jogador) {
+                                Jogador busJogador = (Jogador) jogador;
+                                if (busJogador.getNome().equalsIgnoreCase(buscaJogador)) {
+                                    busJogador.lista();
+                                }
                             }
                         }
                     break;
 
                     case 100 :
                         System.out.println("Saindo do sistema...");
-                        break;
+                        System.exit(0);
                     
                     default:
                         System.out.println("Opção inválida! Tente novamente.");
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
+                System.out.println("8====D " + e.getMessage());
                 ler.nextLine(); // Limpa o buffer do scanner
             }
         } while (opcao != 100);
